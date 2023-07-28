@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     public delegate void PlayerDeadDelegate();
     public event PlayerDeadDelegate OnPlayerDead;
 
+    public delegate void CurrentLifeChangedDelegate(float newLife);
+    public event CurrentLifeChangedDelegate OnCurrentLifeChanged;
+
     Rigidbody2D rb;
     
     float dtime = 0.1f;
@@ -22,17 +25,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void AddLife(float dlife) {
         currentLife += dlife;
+        OnCurrentLifeChanged?.Invoke(currentLife);
     }
 
-    private void StartGame() {
+    public void StartGame() {
         currentLife = maxLife;
+        OnCurrentLifeChanged?.Invoke(currentLife);
         StartCoroutine(CountDown());
     }
 
     private IEnumerator CountDown() {
         while (currentLife >= 0.0f) {
             yield return new WaitForSeconds(dtime);
-            currentLife -= dtime;
+            AddLife(-dtime);
         }
         OnPlayerDead?.Invoke();
     }
