@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8754035542006830607}
   - component: {fileID: -1059032487129090308}
   - component: {fileID: 3035784080236060807}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FleeEnemy
   m_TagString: FleeEnemy
   m_Icon: {fileID: 0}
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fleeSpeed: 5
+  giveawayLife: 3
+  enemyHealth: 1
 --- !u!50 &-1059032487129090308
 Rigidbody2D:
   serializedVersion: 4

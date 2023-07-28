@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3640754480909024239}
   - component: {fileID: 4789476004932612680}
   - component: {fileID: -9222049342617922260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChaseEnemy
   m_TagString: ChaseEnemy
   m_Icon: {fileID: 0}
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab9a517a282248d390bd88a6dcd5727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 1
 --- !u!61 &-9222049342617922260
 BoxCollider2D:
   m_ObjectHideFlags: 0
