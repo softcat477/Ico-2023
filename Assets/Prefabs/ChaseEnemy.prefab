@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6871502429718600442}
   - component: {fileID: 3640754480909024239}
   - component: {fileID: 4789476004932612680}
+  - component: {fileID: 6736274519321030421}
   m_Layer: 0
   m_Name: ChaseEnemy
-  m_TagString: Untagged
+  m_TagString: ChaseEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,4 +134,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab9a517a282248d390bd88a6dcd5727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 9104402875513197051, guid: 542137bc053f140cebf0fbc295d0efc4, type: 3}
+--- !u!50 &6736274519321030421
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123189993962962844}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
