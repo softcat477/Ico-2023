@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject GameOverUI;
     public static GameManager instance;
+    public float TimeLeft;
 
     // Start is called before the first frame update
     void Start()

@@ -5,7 +5,6 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public float TimeLeft;
     public bool TimerOn = false;
 
     public TMP_Text TimerText;
@@ -21,15 +20,15 @@ public class Timer : MonoBehaviour
     {
         if (TimerOn)
         {
-            if (TimeLeft > 0)
+            if (GameManager.instance.TimeLeft > 0)
             {
-                TimeLeft -= Time.deltaTime;
-                UpdateTimer(TimeLeft);
+                GameManager.instance.TimeLeft -= Time.deltaTime;
+                UpdateTimer(GameManager.instance.TimeLeft);
             }
             else
             {
-                TimeLeft = 0;
-                UpdateTimer(TimeLeft);
+                GameManager.instance.TimeLeft = 0;
+                UpdateTimer(GameManager.instance.TimeLeft);
                 TimerOn = false;
                 GameManager.instance.ShowGameOverUI();
                 GameManager.instance.DoGameOverBehavior();
