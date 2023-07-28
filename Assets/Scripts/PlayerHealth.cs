@@ -10,11 +10,14 @@ public class PlayerHealth : MonoBehaviour
 
     public delegate void PlayerDeadDelegate();
     public event PlayerDeadDelegate OnPlayerDead;
+
+    Rigidbody2D rb;
     
     float dtime = 0.1f;
     void Start()
     {
         StartGame();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void AddLife(float dlife) {
@@ -31,7 +34,14 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(dtime);
             currentLife -= dtime;
         }
-        Debug.Log("Player dead.");
         OnPlayerDead?.Invoke();
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("ChaseEnemy"))
+        {
+            AddLife(-0.5f);
+        }
     }
 }
