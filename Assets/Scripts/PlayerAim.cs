@@ -18,6 +18,8 @@ public class PlayerAim : MonoBehaviour
 
     bool isCoolingDown = false;
 
+    public AudioSource audio;
+
     private void Awake() {
         playerInputActions = new PlayerInputActions();
     }
@@ -58,7 +60,14 @@ public class PlayerAim : MonoBehaviour
             GameObject bullet = Instantiate(fireBallPrefab, transform.position + player2mouse.normalized, q * indicator.transform.rotation);
             bullet.GetComponent<Rigidbody2D>().AddForce(player2mouse.normalized * bulletForce, ForceMode2D.Impulse);
             StartCoroutine(CoolDownCountdown());
+
+            DoPlayAudioClip();
         }
+    }
+
+    void DoPlayAudioClip()
+    {
+        audio.Play();
     }
 
     private IEnumerator CoolDownCountdown() {

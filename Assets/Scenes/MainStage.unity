@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &130778523 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 326709349332166906, guid: 538a05efe7b9c4cdb9f37abe4041c723, type: 3}
-  m_PrefabInstance: {fileID: 1921219551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0462323c67fe2da48a6881de5923d3ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &347169321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5707,6 +5696,63 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &801634836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5923548
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7671705
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.034713693
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309692217896649778, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917873444166361828, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
+      propertyPath: m_Name
+      value: SoundSetting
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f5031373e01c4a88a1481c452c2f367, type: 3}
 --- !u!1 &899377041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6145,10 +6191,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2816183957866306118, guid: 542137bc053f140cebf0fbc295d0efc4, type: 3}
-      propertyPath: maxLife
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2746346326119837131, guid: 542137bc053f140cebf0fbc295d0efc4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3679645
@@ -6195,10 +6237,6 @@ PrefabInstance:
       objectReference: {fileID: 1958865418}
     - target: {fileID: 9104402875513197051, guid: 542137bc053f140cebf0fbc295d0efc4, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104402875513197051, guid: 542137bc053f140cebf0fbc295d0efc4, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -28748,10 +28786,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3600935796014727951, guid: 538a05efe7b9c4cdb9f37abe4041c723, type: 3}
-      propertyPath: timer
-      value: 
-      objectReference: {fileID: 130778523}
-    - target: {fileID: 3600935796014727951, guid: 538a05efe7b9c4cdb9f37abe4041c723, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1551561029}
@@ -28912,3 +28946,4 @@ SceneRoots:
   - {fileID: 1162254823}
   - {fileID: 1140736388}
   - {fileID: 1123358487}
+  - {fileID: 801634836}
