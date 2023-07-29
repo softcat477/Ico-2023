@@ -12,31 +12,31 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TimerOn = true;
+        //TimerOn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (TimerOn)
-        {
-            if (GameManager.instance.TimeLeft > 0)
-            {
-                GameManager.instance.TimeLeft -= Time.deltaTime;
-                UpdateTimer(GameManager.instance.TimeLeft);
-            }
-            else
-            {
-                GameManager.instance.TimeLeft = 0;
-                UpdateTimer(GameManager.instance.TimeLeft);
-                TimerOn = false;
-                GameManager.instance.ShowGameOverUI();
-                GameManager.instance.DoGameOverBehavior();
-            }
-        }
+        // if (TimerOn)
+        // {
+        //     if (GameManager.instance.TimeLeft > 0)
+        //     {
+        //         GameManager.instance.TimeLeft -= Time.deltaTime;
+        //         UpdateTimer(GameManager.instance.TimeLeft);
+        //     }
+        //     else
+        //     {
+        //         GameManager.instance.TimeLeft = 0;
+        //         UpdateTimer(GameManager.instance.TimeLeft);
+        //         TimerOn = false;
+        //         GameManager.instance.ShowGameOverUI();
+        //         GameManager.instance.DoGameOverBehavior();
+        //     }
+        // }
     }
 
-    void UpdateTimer(float currentTime)
+    public void UpdateTimer(float currentTime)
     {
         float minutes = Mathf.FloorToInt(currentTime / 60);
         float seconds = Mathf.FloorToInt(currentTime % 60);
