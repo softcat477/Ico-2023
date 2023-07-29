@@ -20,6 +20,7 @@ public class SpawnManager : MonoBehaviour
     bool isInGame;
 
     public PlayerHealth playerHealth;
+    public BoxCollider2D initialSpawnAnchor;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class SpawnManager : MonoBehaviour
         };
     }
 
+
     public void SetIsInGame(bool state) {
         isInGame = state;
     }
@@ -36,13 +38,15 @@ public class SpawnManager : MonoBehaviour
     private IEnumerator RepeatSpawnEnemies() {
         isInGame = true;
         while (isInGame == true) {
+            yield return new WaitForSeconds(spawnInterval);
             SpawnChaseEnemy();
             SpawnFleeEnemy();
-            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
     public void Restart() {
+        SpawnEnemy(chaseEnemyPrefab, chaseEnemyCount, true);
+        SpawnEnemy(fleeEnemyPrefab, fleeEnemyCount, true);
         StartCoroutine(RepeatSpawnEnemies());
     }
 
@@ -57,7 +61,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(GameObject prefab, int count) {
+    void SpawnEnemy(GameObject prefab, int count, bool rejectWithBBox=false) {
         int spawned = 0;
         Bounds bounds = worldBound.bounds;
         while (spawned <= count) {
@@ -67,11 +71,25 @@ public class SpawnManager : MonoBehaviour
                 Random.Range(bounds.min.z, bounds.max.z)
             ); 
 
+            if (rejectWithBBox == true) {
+                Bounds initialSpawn = initialSpawnAnchor.bounds;
+                Vector2 minmaxX = new Vector2(initialSpawn.min.x, initialSpawn.max.x);
+                Vector2 minmaxY = new Vector2(initialSpawn.min.y, initialSpawn.max.y);
+                if ((randomPoint.x >= minmaxX.x && randomPoint.x <= minmaxX.y) && 
+                    (randomPoint.y >= minmaxY.x && randomPoint.y <= minmaxY.y)) {
+                    continue;
+                }
+            }
+
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPoint, out hit, Mathf.Infinity, NavMesh.AllAreas))
             {
-                Instantiate(prefab, hit.position, indicator.transform.rotation);
-                spawned += 1;
+                Vector3 screen_position;
+                screen_position = Camera.main.WorldToScreenPoint(randomPoint);
+                if (!((screen_position.x >= 0 && screen_position.x <= Screen.width) && (screen_position.y >= 0 && screen_position.y <= Screen.height))) {
+                    Instantiate(prefab, hit.position, indicator.transform.rotation);
+                    spawned += 1;
+                }
             }
         }
     }
