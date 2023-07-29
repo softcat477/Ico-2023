@@ -7,7 +7,6 @@ using NavMeshPlus.Components;
 public class SpawnManager : MonoBehaviour
 {
     public NavMeshSurface navSurface;
-    public GameObject indicator;
     public PolygonCollider2D worldBound;
 
     public GameObject chaseEnemyPrefab;
@@ -87,7 +86,7 @@ public class SpawnManager : MonoBehaviour
                 Vector3 screen_position;
                 screen_position = Camera.main.WorldToScreenPoint(randomPoint);
                 if (!((screen_position.x >= 0 && screen_position.x <= Screen.width) && (screen_position.y >= 0 && screen_position.y <= Screen.height))) {
-                    Instantiate(prefab, hit.position, indicator.transform.rotation);
+                    Instantiate(prefab, hit.position, Quaternion.identity);
                     spawned += 1;
                 }
             }
