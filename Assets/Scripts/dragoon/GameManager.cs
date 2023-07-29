@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float respawnPlayerInterval = 1.0f;
 
     public GameObject player;
+    [SerializeField] Timer timer;
 
     Vector3 playerRespawnPosition;
 
@@ -24,7 +25,10 @@ public class GameManager : MonoBehaviour
     private void Start() {
         playerRespawnPosition = player.transform.position;
         player.GetComponent<PlayerHealth>().OnPlayerDead += DoGameOverBehavior;
-        player.GetComponent<PlayerHealth>().OnCurrentLifeChanged += (float newLife) => {TimeLeft = newLife;};
+        player.GetComponent<PlayerHealth>().OnCurrentLifeChanged += (float newLife) => {
+            TimeLeft = newLife;
+            timer.UpdateTimer(newLife);
+        };
     }
 
     public IEnumerator RespawnPlayer(float coolDown) {
