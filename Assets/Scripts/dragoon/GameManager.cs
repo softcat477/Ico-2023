@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     private bool bPlayerDead = false;
 
+    public AudioSource gameManagerBGM;
+    public AudioSource normalBGM;
+    public AudioSource gameOverBGM;
+    public AudioSource tickingBGM;
+
     private void Awake() {
         if (instance != null) {
             Destroy(gameObject);
@@ -47,6 +52,18 @@ public class GameManager : MonoBehaviour
         // if bPlayerDead is true
             //...
             //OnPlayerRespawnWasPressed();
+
+        if (GameManager.instance.TimeLeft >= 60)
+        {
+            PlayNormalBGM();
+        }
+        else if (GameManager.instance.TimeLeft < 60 && !bPlayerDead)
+        {
+            PlayTickingBGM();
+        } else if (GameManager.instance.TimeLeft <= 0f)
+        {
+            PlayGameOverBGM();
+        }
     }
 
     public IEnumerator RespawnPlayer(float coolDown) {
@@ -74,6 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void DoGameOverBehavior()
     {
+        PlayGameOverBGM();
         Time.timeScale = 0;
         ShowGameOverUI();
         DoDisablePlayerControls();
@@ -101,5 +119,66 @@ public class GameManager : MonoBehaviour
     {
         DoEnablePlayerControls();
         bPlayerDead = false;
+    }
+
+    public void PlayNormalBGM()
+    {
+        //pause all audio sources except normal
+        if (normalBGM.isPlaying == false)
+        {
+            PlayClipFromAudioSource(normalBGM);
+        }
+        if (tickingBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(tickingBGM);
+        }
+        if (gameOverBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(gameOverBGM);
+        }
+    }
+
+    public void PlayTickingBGM()
+    {
+        //pause all audio sources except ticking
+        if (normalBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(normalBGM);
+        }
+        if (gameOverBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(gameOverBGM);
+        }
+        if (tickingBGM.isPlaying == false)
+        {
+            PlayClipFromAudioSource(tickingBGM);
+        }
+    }
+
+    public void PlayGameOverBGM()
+    {
+        //pause all audio sources except gameover
+        if (normalBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(normalBGM);
+        }
+        if (tickingBGM.isPlaying == true)
+        {
+            PauseClipFromAudioSource(tickingBGM);
+        }
+        if (gameOverBGM.isPlaying == false)
+        {
+            PlayClipFromAudioSource(gameOverBGM);
+        }
+    }
+
+    public void PlayClipFromAudioSource(AudioSource audioSource)
+    {
+        audioSource.Play();
+    }
+
+    public void PauseClipFromAudioSource(AudioSource audioSource)
+    {
+        audioSource.Pause();
     }
 }
