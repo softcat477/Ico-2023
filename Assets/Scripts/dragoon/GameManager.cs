@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     Vector3 playerRespawnPosition;
 
+    public SpawnManager spawnManager;
+
     private bool bPlayerDead = false;
 
     private void Awake() {
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
             TimeLeft = newLife;
             timer.UpdateTimer(newLife);
         };
+        spawnManager.Restart();
     }
 
     private void Update() {
@@ -49,7 +52,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator RespawnPlayer(float coolDown) {
         //reset time scale to 1
         Time.timeScale = 1;
-        
         yield return new WaitForSeconds(coolDown);
 
         player.transform.position = playerRespawnPosition;
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerHealth>().StartGame();
 
         ResetPlayerConditions();
+        spawnManager.Restart();
     }
 
     public void ShowGameOverUI()
