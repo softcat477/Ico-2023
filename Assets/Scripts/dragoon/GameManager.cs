@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     Vector3 playerRespawnPosition;
 
+    private bool bPlayerDead = false;
+
     private void Awake() {
         if (instance != null) {
             Destroy(gameObject);
@@ -31,11 +33,30 @@ public class GameManager : MonoBehaviour
         };
     }
 
+    private void Update() {
+        // add conditional here for pressing "R" for restart
+        if (Input.GetKeyDown("r") && bPlayerDead)
+        {
+            OnPlayerRespawnWasPressed();
+        }
+        // if (getkeydown R) or with new input system.
+        // also check if player is dead
+        // if bPlayerDead is true
+            //...
+            //OnPlayerRespawnWasPressed();
+    }
+
     public IEnumerator RespawnPlayer(float coolDown) {
+        //reset time scale to 1
+        Time.timeScale = 1;
+        
         yield return new WaitForSeconds(coolDown);
+
         player.transform.position = playerRespawnPosition;
         HideGameOverUI();
         player.GetComponent<PlayerHealth>().StartGame();
+
+        ResetPlayerConditions();
     }
 
     public void ShowGameOverUI()
@@ -50,8 +71,32 @@ public class GameManager : MonoBehaviour
 
     public void DoGameOverBehavior()
     {
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
         ShowGameOverUI();
+        DoDisablePlayerControls();
+        bPlayerDead = true;
+    }
+
+    public void OnPlayerRespawnWasPressed()
+    {
         StartCoroutine(RespawnPlayer(respawnPlayerInterval));
+    }
+
+    public void DoDisablePlayerControls()
+    {
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerAim>().enabled = false;
+    }
+
+    public void DoEnablePlayerControls()
+    {
+        player.GetComponent<PlayerMovement>().enabled = true;
+        player.GetComponent<PlayerAim>().enabled = true;
+    }
+
+    public void ResetPlayerConditions()
+    {
+        DoEnablePlayerControls();
+        bPlayerDead = false;
     }
 }
