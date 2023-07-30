@@ -17,15 +17,20 @@ public class PlayerHealth : MonoBehaviour
     Rigidbody2D rb;
     
     float dtime = 0.1f;
+
+    public ShakeCamera shakeCamera;
     void Start()
     {
         StartGame();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void AddLife(float dlife) {
+    public void AddLife(float dlife, bool shake = true) {
         currentLife += dlife;
         OnCurrentLifeChanged?.Invoke(currentLife);
+
+        if (shake)
+            shakeCamera.StartShake();
     }
 
     public void StartGame() {
@@ -37,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator CountDown() {
         while (currentLife >= 0.0f) {
             yield return new WaitForSeconds(dtime);
-            AddLife(-dtime);
+            AddLife(-dtime, false);
         }
         OnPlayerDead?.Invoke();
     }
