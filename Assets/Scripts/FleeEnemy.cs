@@ -13,6 +13,12 @@ public class FleeEnemy : MonoBehaviour
     public int enemyHealth = 1;
     int health;
     Animator animator;
+
+    
+    public GameObject deathAnimation;
+    public float deathAnimationdelay = 0.7f;
+
+    public SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +46,16 @@ public class FleeEnemy : MonoBehaviour
             if (health == 0) {
                 PlayerHealth phealth = target.gameObject.GetComponent<PlayerHealth>();
                 phealth.AddLife(giveawayLife);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                deathAnimation.SetActive(true);
+                StartCoroutine(DelayDestroy());
             }
         }
+    }
+
+    IEnumerator DelayDestroy() {
+        renderer.enabled = false;
+        yield return new WaitForSeconds(deathAnimationdelay);
+        Destroy(gameObject);
     }
 }

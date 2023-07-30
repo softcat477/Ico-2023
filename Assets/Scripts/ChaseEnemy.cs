@@ -9,6 +9,11 @@ public class ChaseEnemy : MonoBehaviour
     int health;
     Transform target;
     NavMeshAgent agent;
+
+    public GameObject deathAnimation;
+    public float deathAnimationdelay = 1.0f;
+
+    public SpriteRenderer renderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +35,17 @@ public class ChaseEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.CompareTag("Bullet")) {
             health -= 1;
-            if (health == 0)
-                Destroy(gameObject);
+            if (health == 0) {
+                //Destroy(gameObject);
+                deathAnimation.SetActive(true);
+                StartCoroutine(DelayDestroy());
+            }
         }
+    }
+
+    IEnumerator DelayDestroy() {
+        renderer.enabled = false;
+        yield return new WaitForSeconds(deathAnimationdelay);
+        Destroy(gameObject);
     }
 }
