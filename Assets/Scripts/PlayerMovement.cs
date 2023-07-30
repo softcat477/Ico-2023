@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator animator;
+    public Animator animator;
     PlayerInputActions playerInputActions;
 
     InputAction move;
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
