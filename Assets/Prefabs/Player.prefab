@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77b32e8baced4e1ba1b39f863a67e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 5000
+  maxLife: 6
   currentLife: 62
   shakeCamera: {fileID: 0}
 --- !u!82 &2807303600532774989
