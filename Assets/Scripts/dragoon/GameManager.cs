@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     [SerializeField] Timer timer;
+    public GameObject PowerUpAnim;
 
     Vector3 playerRespawnPosition;
 
@@ -180,5 +181,12 @@ public class GameManager : MonoBehaviour
     public void PauseClipFromAudioSource(AudioSource audioSource)
     {
         audioSource.Pause();
+    }
+
+    public void PlayUIPowerUp()
+    {
+        GameObject powerUp = Instantiate(PowerUpAnim, player.transform.position, player.transform.rotation);
+        // PowerUpAnim.transform.position = player.transform.position;
+        powerUp.GetComponent<PowerUpUIAnim>().OnPlayerDefeatedBoss();
     }
 }
