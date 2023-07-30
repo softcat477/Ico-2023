@@ -13,26 +13,27 @@ public class PowerUpUIAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        OnPlayerDefeatedBoss();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayPowerUpAnimationOnce();
+    }
+
+    void OnPlayerDefeatedBoss()
+    {
+        if (!animator.GetBool("powerUp"))
+        {
+            PlayPowerUpAnimationOnce();
+        } else {
+            StartCoroutine(ExampleCoroutine());
+        }
     }
 
     void PlayPowerUpAnimationOnce()
     {
         PlayTextAnimation();
-
-        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1.0f)
-        {
-            StopTextAnimation();
-        }
-
-        // StartCoroutine(ExampleCoroutine());
     }
 
     void PlayTextAnimation()
@@ -48,13 +49,10 @@ public class PowerUpUIAnim : MonoBehaviour
 
     IEnumerator ExampleCoroutine()
     {
-        //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        StopTextAnimation();
     }
 }
