@@ -46,6 +46,7 @@ public class ChaseEnemy : MonoBehaviour
                 //Destroy(gameObject);
                 deathAnimation.SetActive(true);
                 StartCoroutine(DelayDestroy());
+                target.gameObject.GetComponent<PlayerHealth>().shakeCamera.StartShake();
             }
         }
     }
