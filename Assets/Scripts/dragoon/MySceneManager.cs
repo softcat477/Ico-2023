@@ -5,20 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MySceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnButtonClickChangeScene(string sceneToGo)
     {
         SceneManager.LoadScene(sceneToGo);
+        // SceneManager.LoadScene(sceneToGo, LoadSceneMode.Additive);
+    }
+
+    public void OnButtonClickUnloadScene(string sceneToUnload)
+    {
+        SceneManager.UnloadSceneAsync(sceneToUnload);
     }
 }
