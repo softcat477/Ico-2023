@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     [SerializeField] Timer timer;
     public GameObject PowerUpAnim;
+    public GameObject CountdownDirector;
 
     Vector3 playerRespawnPosition;
 
@@ -78,6 +80,9 @@ public class GameManager : MonoBehaviour
 
         ResetPlayerConditions();
         spawnManager.Restart();
+
+        CountdownDirector.GetComponent<PlayableDirector>().Play();
+        // CountdownDirector.GetComponent<PlayableDirector>().Stop();
     }
 
     public void ShowGameOverUI()
