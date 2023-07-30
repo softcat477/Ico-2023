@@ -11,7 +11,7 @@ public class PlayerAim : MonoBehaviour
 
     [SerializeField] bool isFiring = false;
 
-    public GameObject indicator;
+    public GameObject playerDirectionalLight;
     public GameObject fireBallPrefab;
     public float bulletForce = 10.0f;
     public float coolDownInterval = 0.2f;
@@ -50,14 +50,15 @@ public class PlayerAim : MonoBehaviour
         Vector3 mouse_world_pos = Camera.main.ScreenToWorldPoint(new Vector3(mouse_screen_pos.x, mouse_screen_pos.y, Camera.main.nearClipPlane));
         Vector3 tmp = mouse_world_pos - transform.position;
         Vector3 player2mouse = new Vector2(tmp.x, tmp.y);
-        indicator.transform.position = transform.position + player2mouse.normalized;
+        playerDirectionalLight.transform.position = transform.position + player2mouse.normalized;
 
         // Rotate
-        Quaternion q = Quaternion.FromToRotation(indicator.transform.right, player2mouse.normalized);
-        indicator.transform.rotation = q * indicator.transform.rotation;
+        Quaternion q = Quaternion.FromToRotation(playerDirectionalLight.transform.up, player2mouse.normalized);
+        playerDirectionalLight.transform.rotation = q * playerDirectionalLight.transform.rotation;
 
+        Quaternion rotateFireball = Quaternion.FromToRotation(fireBallPrefab.transform.right, player2mouse.normalized);
         if (isFiring && !isCoolingDown) {
-            GameObject bullet = Instantiate(fireBallPrefab, transform.position + player2mouse.normalized, q * indicator.transform.rotation);
+            GameObject bullet = Instantiate(fireBallPrefab, transform.position + player2mouse.normalized, rotateFireball * fireBallPrefab.transform.rotation);
             bullet.GetComponent<Rigidbody2D>().AddForce(player2mouse.normalized * bulletForce, ForceMode2D.Impulse);
             StartCoroutine(CoolDownCountdown());
 
