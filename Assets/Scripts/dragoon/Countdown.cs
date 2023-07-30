@@ -34,7 +34,7 @@ public class Countdown : MonoBehaviour
 
     public void UpdateTimerToGo()
     {
-        TimerText.text = "GO!!";
+        TimerText.text = "IGNITE!!";
     }
 
     private void OnEnable() {
