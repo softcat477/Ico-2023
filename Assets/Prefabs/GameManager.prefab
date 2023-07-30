@@ -583,6 +583,8 @@ MonoBehaviour:
   respawnPlayerInterval: 1
   player: {fileID: 0}
   timer: {fileID: 326709349332166906}
+  PowerUpAnim: {fileID: 1150072820197096166, guid: 66b29f21a25ec9f41ae7de4be1b1c1fe, type: 3}
+  CountdownDirector: {fileID: 0}
   spawnManager: {fileID: 0}
   gameManagerBGM: {fileID: 1212144473751682962}
   normalBGM: {fileID: 1212144473751682962}
@@ -598,7 +600,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6065677385686591851, guid: 18d4f175855981945b5a81890d8312ae, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 11ecc16a2545ab4418fdd522e6ece129, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 56d63f04fe43bd5418ab7746b3a2ad38, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
