@@ -9915,6 +9915,9 @@ MonoBehaviour:
   deathAnimation: {fileID: 6843220936180228079}
   deathAnimationdelay: 0.7
   renderer: {fileID: 1964371773333704044}
+  roamingInterval: 3
+  fleeDistance: 20
+  roamingRadius: 20
 --- !u!50 &-1059032487129090308
 Rigidbody2D:
   serializedVersion: 4
