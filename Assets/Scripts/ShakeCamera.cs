@@ -25,13 +25,11 @@ public class ShakeCamera : MonoBehaviour
     public void StartShake() {
         if (isShaking)
             return;
-        Debug.Log("Start coroutine");
         isShaking = true;
         StartCoroutine(Shake());
     }
 
     IEnumerator Shake() {
-        Debug.Log("Coroutine");
         _perlin.m_AmplitudeGain = Amplitude;
         yield return new WaitForSeconds(Duration);
         _perlin.m_AmplitudeGain = 0;
